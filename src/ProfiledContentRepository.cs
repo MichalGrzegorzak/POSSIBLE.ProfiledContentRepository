@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using EPiServer;
 using EPiServer.Core;
@@ -255,9 +256,12 @@ namespace POSSIBLE.ProfiledContentRepository
         {
             using (MiniProfiler.Current.Step("ListDelayedPublish"))
             {
-                return DataFactory.Instance.ListDelayedPublish();
+                 List<IContent> contents = new List<IContent>();
+                 DataFactory.Instance.ProviderMap.Iterate((System.Action<ContentProvider>) (contentProvider => contents.AddRange(contentProvider.ListDelayedPublish())));
+                 return (IEnumerable<IContent>) contents;
             }
         }
+
 
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 using System.Web;
 using StackExchange.Profiling;
 
@@ -8,8 +9,11 @@ namespace POSSIBLE.ProfiledContentRepository
     {
         public void Init(HttpApplication context)
         {
-            SetUpDefaultDisplayDelegate();
-            BindMiniProfilerApplicationEvents(context);
+            if (ConfigManager.EnableProfiledRepository)
+            {
+                SetUpDefaultDisplayDelegate();
+                BindMiniProfilerApplicationEvents(context);        
+            }
         }
 
         private void SetUpDefaultDisplayDelegate()

@@ -4,4 +4,7 @@
       <add name="ProfiledContentRepositoryModule" type="POSSIBLE.ProfiledContentRepository.RequestHttpModule, POSSIBLE.ProfiledContentRepository" />
     </modules>
   </system.webServer>
+	<appSettings>
+		<add key="EnableProfiledRepository" value="true" />
+	</appSettings>
 </configuration>  
